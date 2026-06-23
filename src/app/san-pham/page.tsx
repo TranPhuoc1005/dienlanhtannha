@@ -163,11 +163,12 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
         rotateX: rotateX,
         rotateY: rotateY,
         transformPerspective: 1000,
+        opacity: 1,
+        scale: 1,
       }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       layout
       initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
       onClick={onClick}
       className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300 tilt-card glow-border-hover frost-container"
