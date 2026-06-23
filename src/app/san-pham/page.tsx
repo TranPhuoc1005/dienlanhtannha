@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Snowflake, Refrigerator, WashingMachine, Zap, ArrowRight, X, Phone, MessageCircle } from "lucide-react";
+import { ArrowRight, X, Phone, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
-// Extensive mock product list
+// Extensive mock product list with realistic image paths
 const initialProducts = [
   {
     id: "ML-01",
@@ -16,7 +17,7 @@ const initialProducts = [
     price: "6.200.000đ",
     status: "Mới 95%",
     badge: "Bán chạy",
-    icon: Snowflake,
+    image: "/products/ml-daikin.png",
     desc: "Máy lạnh chạy êm ái, tiết kiệm điện năng vượt trội, thích hợp cho phòng 15 - 20 m2.",
     specs: {
       "Công suất làm lạnh": "1.5 HP - 11.900 BTU",
@@ -24,8 +25,7 @@ const initialProducts = [
       "Loại gas": "R32 (Thân thiện môi trường)",
       "Nơi sản xuất": "Thái Lan",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-blue-400 to-indigo-500",
+    }
   },
   {
     id: "TL-02",
@@ -37,7 +37,7 @@ const initialProducts = [
     price: "8.500.000đ",
     status: "Mới 98%",
     badge: "Tiết Kiệm Điện",
-    icon: Refrigerator,
+    image: "/products/tl-panasonic.png",
     desc: "Công nghệ đông mềm Prime Fresh+ giữ thực phẩm tươi ngon suốt 7 ngày không cần rã đông.",
     specs: {
       "Dung tích": "322 Lít",
@@ -45,8 +45,7 @@ const initialProducts = [
       "Công nghệ Inverter": "Có (Tiết kiệm điện)",
       "Khử mùi kháng khuẩn": "Blue Ag+ kháng khuẩn 99.99%",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-sky-400 to-blue-500",
+    }
   },
   {
     id: "MG-03",
@@ -58,7 +57,7 @@ const initialProducts = [
     price: "5.800.000đ",
     status: "Mới 99%",
     badge: "Giá Cực Tốt",
-    icon: WashingMachine,
+    image: "/products/mg-lg.png",
     desc: "Hệ thống truyền động trực tiếp AI DD bảo vệ sợi vải tối ưu, hoạt động cực kỳ êm ái.",
     specs: {
       "Khối lượng giặt": "9.0 kg",
@@ -66,8 +65,7 @@ const initialProducts = [
       "Động cơ": "Truyền động trực tiếp - AI DD",
       "Tiết kiệm điện": "Inverter",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-cyan-400 to-teal-500",
+    }
   },
   {
     id: "ML-04",
@@ -79,7 +77,7 @@ const initialProducts = [
     price: "4.800.000đ",
     status: "Mới 90%",
     badge: "Giá Rẻ",
-    icon: Snowflake,
+    image: "/products/ml-panasonic.png",
     desc: "Bộ lọc kháng khuẩn Nanoe-G lọc sạch bụi mịn PM2.5, phù hợp phòng ngủ nhỏ dưới 15 m2.",
     specs: {
       "Công suất làm lạnh": "1.0 HP - 9.000 BTU",
@@ -87,8 +85,7 @@ const initialProducts = [
       "Khử mùi lọc khí": "Nanoe-G độc quyền",
       "Loại gas": "R32",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-blue-500 to-cyan-500",
+    }
   },
   {
     id: "TD-05",
@@ -100,15 +97,14 @@ const initialProducts = [
     price: "3.900.000đ",
     status: "Mới 97%",
     badge: "Đông Sâu",
-    icon: Refrigerator,
+    image: "/products/td-aqua.png",
     desc: "Làm lạnh 3D nhanh sâu xuống -24°C, thích hợp cho việc tích trữ sữa, thịt cá lâu ngày.",
     specs: {
       "Dung tích": "220 Lít",
       "Loại tủ đông": "1 ngăn đông - 2 cánh dỡ",
       "Dàn lạnh": "Đồng nguyên chất (Siêu bền)",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-indigo-400 to-purple-500",
+    }
   },
   {
     id: "MN-06",
@@ -120,17 +116,119 @@ const initialProducts = [
     price: "2.100.000đ",
     status: "Mới 99%",
     badge: "Hàng Lướt",
-    icon: Zap,
+    image: "/products/mn-ariston.png",
     desc: "Hệ thống an toàn đồng bộ tích hợp ELCB chống giật gián tiếp và cảm biến nhiệt độ an toàn.",
     specs: {
       "Công suất": "4500 W",
       "Loại máy": "Làm nóng trực tiếp (Có bơm trợ lực)",
       "Bộ chống giật": "ELCB điện tử siêu nhạy",
       "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    },
-    gradient: "from-emerald-400 to-teal-500",
-  },
+    }
+  }
 ];
+
+function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: () => void }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    // Max rotation is 8 degrees
+    const rX = ((centerY - y) / centerY) * 8;
+    const rY = ((x - centerX) / centerX) * 8;
+    
+    setRotateX(rX);
+    setRotateY(rY);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      animate={{
+        rotateX: rotateX,
+        rotateY: rotateY,
+        transformPerspective: 1000,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      onClick={onClick}
+      className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300 tilt-card glow-border-hover frost-container"
+    >
+      {/* Dynamic Water Drop Condensation simulation inside the card cover */}
+      <div className="absolute top-2 left-1/3 water-drop opacity-0 group-hover:opacity-100 z-10" style={{ animationDelay: "0s" }} />
+      <div className="absolute top-8 right-1/4 water-drop opacity-0 group-hover:opacity-100 z-10" style={{ animationDelay: "2s" }} />
+
+      {/* Photo Visual */}
+      <div className="h-48 relative bg-gradient-to-b from-[#f5f9ff] to-white overflow-hidden flex items-center justify-center select-none border-b border-slate-100/80 ice-shimmer">
+        
+        {/* Frost Layer overlay */}
+        <div className="frost-overlay" />
+        
+        {/* Actual Realistic Product Image */}
+        <div className="relative w-36 h-36 group-hover:scale-105 transition-transform duration-500 z-[1] tilt-inner-element">
+          <Image
+            src={p.image}
+            alt={p.name}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-contain p-2"
+          />
+        </div>
+        
+        {/* Breathing animated badge */}
+        <motion.span
+          animate={{ opacity: [0.75, 1, 0.75], scale: [0.98, 1, 0.98] }}
+          transition={{
+            repeat: Infinity,
+            duration: 2,
+            ease: "easeInOut",
+          }}
+          className="absolute top-4 left-4 bg-emerald-500 text-white text-[9px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm z-[3]"
+        >
+          {p.badge}
+        </motion.span>
+      </div>
+
+      {/* Body Content */}
+      <div className="p-6 flex-grow flex flex-col justify-between tilt-inner-element">
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider">{p.category}</span>
+            <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">{p.status}</span>
+          </div>
+          <h3 className="text-base font-bold text-[#1e293b] group-hover:text-[#0a84ff] transition-colors">{p.name}</h3>
+          <p className="text-xs text-[#1e293b]/60 leading-relaxed mt-2 line-clamp-2">{p.desc}</p>
+        </div>
+
+        <div className="mt-6 pt-4 border-t border-slate-100/80 flex items-center justify-between">
+          <span className="text-base font-extrabold text-[#0a84ff]">{p.price}</span>
+          <span className="text-xs font-bold text-[#0a84ff] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            Xem chi tiết
+            <ArrowRight className="w-3.5 h-3.5" />
+          </span>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function SanPham() {
   const [selectedCat, setSelectedCat] = useState("Tất Cả");
@@ -236,55 +334,9 @@ export default function SanPham() {
         {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
-            {filteredProducts.map((p) => {
-              const Icon = p.icon;
-              return (
-                <motion.div
-                  key={p.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  onClick={() => setActiveProduct(p)}
-                  className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300"
-                >
-                  {/* Photo Visual */}
-                  <div className="h-48 relative bg-slate-900 overflow-hidden flex items-center justify-center select-none">
-                    <div className={`absolute inset-0 bg-gradient-to-tr ${p.gradient} opacity-20`} />
-                    <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner group-hover:scale-110 transition-transform duration-400">
-                      <Icon className="w-10 h-10 text-white" aria-hidden="true" />
-                    </div>
-                    <motion.span
-                      animate={{ opacity: [0.65, 1, 0.65] }}
-                      transition={{ repeat: Infinity, duration: 2 }}
-                      className="absolute top-4 left-4 bg-emerald-500 text-white text-[9px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm"
-                    >
-                      {p.badge}
-                    </motion.span>
-                  </div>
-
-                  {/* Body Content */}
-                  <div className="p-6 flex-grow flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider">{p.category}</span>
-                        <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">{p.status}</span>
-                      </div>
-                      <h3 className="text-base font-bold text-[#1e293b] group-hover:text-[#0a84ff] transition-colors">{p.name}</h3>
-                      <p className="text-xs text-[#1e293b]/60 leading-relaxed mt-2 line-clamp-2">{p.desc}</p>
-                    </div>
-
-                    <div className="mt-6 pt-4 border-t border-slate-50 flex items-center justify-between">
-                      <span className="text-base font-extrabold text-[#0a84ff]">{p.price}</span>
-                      <span className="text-xs font-bold text-[#0a84ff] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                        Xem chi tiết
-                        <ArrowRight className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {filteredProducts.map((p) => (
+              <ProductCard key={p.id} p={p} onClick={() => setActiveProduct(p)} />
+            ))}
           </AnimatePresence>
         </div>
 
@@ -325,17 +377,23 @@ export default function SanPham() {
               {/* Close Button */}
               <button
                 onClick={() => setActiveProduct(null)}
-                className="absolute top-4 right-4 z-10 text-white md:text-[#1e293b] md:hover:bg-slate-100 p-2 rounded-full transition-colors cursor-pointer"
+                className="absolute top-4 right-4 z-10 text-[#1e293b] hover:bg-slate-100 p-2 rounded-full transition-colors cursor-pointer bg-white/80 backdrop-blur-sm shadow-sm"
                 aria-label="Đóng bảng thông số"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              {/* Modal Banner */}
-              <div className="h-44 bg-slate-900 flex items-center justify-center relative select-none">
-                <div className={`absolute inset-0 bg-gradient-to-tr ${activeProduct.gradient} opacity-30`} />
-                <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
-                  <activeProduct.icon className="w-8 h-8 text-white" aria-hidden="true" />
+              {/* Modal Banner - Product Showcase in a light frosty studio showcase */}
+              <div className="h-56 bg-gradient-to-b from-[#f5f9ff] to-white flex items-center justify-center relative select-none border-b border-slate-100">
+                <div className="frost-overlay opacity-100 backdrop-blur-[2px] pointer-events-none" />
+                <div className="relative w-44 h-44 z-[1]">
+                  <Image
+                    src={activeProduct.image}
+                    alt={activeProduct.name}
+                    fill
+                    sizes="176px"
+                    className="object-contain p-2"
+                  />
                 </div>
               </div>
 
@@ -379,14 +437,14 @@ export default function SanPham() {
                       href={`https://zalo.me/0932188892?text=Tôi%20muốn%20hỏi%20sản%20phẩm%20${activeProduct.id}%20-%20${encodeURIComponent(activeProduct.name)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0068ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors"
+                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0068ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4" />
                       Chat Zalo
                     </a>
                     <a
                       href="tel:0989577792"
-                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0a84ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors"
+                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0a84ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
                     >
                       <Phone className="w-4 h-4" />
                       Gọi điện
@@ -401,3 +459,4 @@ export default function SanPham() {
     </motion.div>
   );
 }
+

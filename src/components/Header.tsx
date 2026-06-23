@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Snowflake, Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,12 +40,19 @@ export default function Header() {
         {/* Logo Link */}
         <Link href="/" className="flex items-center gap-2 group">
           <motion.div
-            animate={{ scale: scrolled ? 0.9 : 1 }}
+            animate={{ scale: scrolled ? 0.95 : 1 }}
             transition={{ duration: 0.3 }}
             className="flex items-center gap-2"
           >
-            <div className="bg-[#0a84ff] text-white p-2 rounded-xl group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-[#0a84ff]/20">
-              <Snowflake className="w-6 h-6" aria-hidden="true" />
+            <div className="relative w-10 h-10 group-hover:rotate-12 transition-transform duration-300 filter drop-shadow-md">
+              <Image
+                src="/logo.png"
+                alt="Logo Điện Lạnh Tận Nhà"
+                fill
+                sizes="40px"
+                className="object-contain"
+                priority
+              />
             </div>
             <span className="font-bold text-lg md:text-xl text-[#1e293b] tracking-wider">
               ĐIỆN LẠNH TẬN NHÀ

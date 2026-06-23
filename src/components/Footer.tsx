@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Snowflake, Phone, MapPin, Clock3 } from "lucide-react";
+import Image from "next/image";
+import { Phone, MapPin, Clock3 } from "lucide-react";
 
 // Inline custom SVG component for Facebook to avoid package export incompatibilities
 const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -42,9 +43,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand Column */}
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="bg-[#0a84ff] text-white p-2 rounded-xl">
-                <Snowflake className="w-6 h-6" aria-hidden="true" />
+            <Link href="/" className="flex items-center gap-2 group">
+              <div className="relative w-10 h-10 group-hover:rotate-12 transition-transform duration-300 filter drop-shadow-md">
+                <Image
+                  src="/logo.png"
+                  alt="Logo Điện Lạnh Tận Nhà"
+                  fill
+                  sizes="40px"
+                  className="object-contain"
+                />
               </div>
               <span className="font-bold text-lg text-white tracking-wider">
                 ĐIỆN LẠNH TẬN NHÀ
