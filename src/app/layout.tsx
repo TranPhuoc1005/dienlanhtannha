@@ -51,6 +51,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://dienlanhtannha.com",
+  },
+  icons: {
+    icon: "/favicon.png",
   }
 };
 

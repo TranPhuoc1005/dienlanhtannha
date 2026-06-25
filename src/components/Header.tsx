@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
@@ -38,25 +37,17 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo Link */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center group">
           <motion.div
             animate={{ scale: scrolled ? 0.95 : 1 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center gap-2"
+            className="relative w-44 h-10 md:w-52 md:h-12 filter drop-shadow-sm transition-transform duration-300 mix-blend-multiply"
           >
-            <div className="relative w-10 h-10 group-hover:rotate-12 transition-transform duration-300 filter drop-shadow-md">
-              <Image
-                src="/logo.png"
-                alt="Logo Điện Lạnh Tận Nhà"
-                fill
-                sizes="40px"
-                className="object-contain"
-                priority
-              />
-            </div>
-            <span className="font-bold text-lg md:text-xl text-[#1e293b] tracking-wider">
-              ĐIỆN LẠNH TẬN NHÀ
-            </span>
+            <img
+              src="/logo-horizontal.png?v=2"
+              alt="Logo Điện Lạnh Tận Nhà"
+              className="w-full h-full object-contain"
+            />
           </motion.div>
         </Link>
 

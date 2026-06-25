@@ -6,6 +6,7 @@ import ServicesSection from "@/components/ServicesSection";
 import CounterSection from "@/components/CounterSection";
 import ProductsSection from "@/components/ProductsSection";
 import WorkflowSection from "@/components/WorkflowSection";
+import DeliveryCanvas from "@/components/DeliveryCanvas";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 
@@ -32,10 +33,13 @@ export default function Home() {
       {/* 5. Service delivery timeline */}
       <WorkflowSection />
 
-      {/* 6. Customer feedback carousel */}
+      {/* 6. Shipping & Delivery Canvas Animation */}
+      <DeliveryCanvas />
+
+      {/* 7. Customer feedback carousel */}
       <TestimonialsSection />
 
-      {/* 7. Quick phone / Booking CTA */}
+      {/* 8. Quick phone / Booking CTA */}
       <CTASection />
     </motion.div>
   );

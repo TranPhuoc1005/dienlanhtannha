@@ -128,50 +128,15 @@ const initialProducts = [
 ];
 
 function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: () => void }) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const card = cardRef.current;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    
-    // Max rotation is 8 degrees
-    const rX = ((centerY - y) / centerY) * 8;
-    const rY = ((x - centerX) / centerX) * 8;
-    
-    setRotateX(rX);
-    setRotateY(rY);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
-
   return (
     <motion.div
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{
-        rotateX: rotateX,
-        rotateY: rotateY,
-        transformPerspective: 1000,
-        opacity: 1,
-        scale: 1,
-      }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
       layout
       initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
       onClick={onClick}
-      className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300 tilt-card glow-border-hover frost-container"
+      className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300 glow-border-hover frost-container hover:shadow-md"
     >
       {/* Dynamic Water Drop Condensation simulation inside the card cover */}
       <div className="absolute top-2 left-1/3 water-drop opacity-0 group-hover:opacity-100 z-10" style={{ animationDelay: "0s" }} />
@@ -184,7 +149,7 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
         <div className="frost-overlay" />
         
         {/* Actual Realistic Product Image */}
-        <div className="relative w-36 h-36 group-hover:scale-105 transition-transform duration-500 z-[1] tilt-inner-element">
+        <div className="relative w-36 h-36 group-hover:scale-105 transition-transform duration-500 z-[1]">
           <Image
             src={p.image}
             alt={p.name}
@@ -209,7 +174,7 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
       </div>
 
       {/* Body Content */}
-      <div className="p-6 flex-grow flex flex-col justify-between tilt-inner-element">
+      <div className="p-6 flex-grow flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider">{p.category}</span>
