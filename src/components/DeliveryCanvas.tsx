@@ -102,7 +102,7 @@ export default function DeliveryCanvas() {
 
       // Create appliances
       const appliances = [
-        { id: 1, type: "ac" as const, name: "Máy Lạnh Inverter", color: "#0a84ff", x: 40, y: 260, targetX: 120, targetY: 275, opacity: 0, scale: 0.5, stage: "warehouse" as const },
+        { id: 1, type: "ac" as const, name: "Máy Lạnh Inverter", color: "#1066e6", x: 40, y: 260, targetX: 120, targetY: 275, opacity: 0, scale: 0.5, stage: "warehouse" as const },
         { id: 2, type: "fridge" as const, name: "Tủ Lạnh Panasonic", color: "#334155", x: 40, y: 235, targetX: 120, targetY: 275, opacity: 0, scale: 0.5, stage: "warehouse" as const },
         { id: 3, type: "washer" as const, name: "Máy Giặt LG Lồng Ngang", color: "#10b981", x: 40, y: 210, targetX: 120, targetY: 275, opacity: 0, scale: 0.5, stage: "warehouse" as const },
       ];
@@ -261,7 +261,7 @@ export default function DeliveryCanvas() {
       c.strokeRect(10, 200, 120, 120);
 
       // Roof
-      c.fillStyle = isNightMode ? "#4f46e5" : "#0a84ff";
+      c.fillStyle = isNightMode ? "#4f46e5" : "#1066e6";
       c.beginPath();
       c.moveTo(5, 200);
       c.lineTo(70, 160);
@@ -272,7 +272,7 @@ export default function DeliveryCanvas() {
       // Signage
       c.fillStyle = "#ffffff";
       c.fillRect(25, 205, 90, 20);
-      c.strokeStyle = "#0a84ff";
+      c.strokeStyle = "#1066e6";
       c.strokeRect(25, 205, 90, 20);
       c.fillStyle = "#1e293b";
       c.font = "bold 9px sans-serif";
@@ -333,7 +333,7 @@ export default function DeliveryCanvas() {
       c.fillRect(752, 170, 21, 5);
 
       // Mailbox / Address plate
-      c.fillStyle = "#0a84ff";
+      c.fillStyle = "#1066e6";
       c.fillRect(675, 225, 25, 12);
       c.fillStyle = "#ffffff";
       c.font = "bold 7px sans-serif";
@@ -525,7 +525,7 @@ export default function DeliveryCanvas() {
       }
 
       // 2. Cabin (Front of truck)
-      c.fillStyle = "#0056b3"; // Primary Dark Blue
+      c.fillStyle = "#094cb0"; // Primary Dark Blue
       c.beginPath();
       c.roundRect(15, -15, 30, 30, [0, 8, 4, 0]);
       c.fill();
@@ -562,7 +562,7 @@ export default function DeliveryCanvas() {
       c.stroke();
 
       // Accent Stripe (cyan)
-      c.fillStyle = "#0a84ff";
+      c.fillStyle = "#1066e6";
       c.fillRect(-60, -10, 75, 5);
 
       // Logo/Text on container
@@ -574,7 +574,7 @@ export default function DeliveryCanvas() {
       c.fillText("0932.188.892", -22, 2);
 
       // Draw Snowflake icon on truck
-      c.fillStyle = "#0a84ff";
+      c.fillStyle = "#1066e6";
       c.beginPath();
       c.arc(-22, -8, 2.5, 0, Math.PI * 2);
       c.fill();
@@ -843,11 +843,11 @@ export default function DeliveryCanvas() {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest block">Quy trình lưu thông</span>
+          <span className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest block">Quy trình lưu thông</span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-[#1e293b]">
             Vận Chuyển & Nhập Hàng Tận Nơi
           </h2>
-          <div className="h-1 bg-[#0a84ff] w-16 mx-auto mt-4 rounded-full" />
+          <div className="h-1 bg-[#1066e6] w-16 mx-auto mt-4 rounded-full" />
           <p className="mt-4 text-[#1e293b]/70 text-sm leading-relaxed">
             Mô phỏng hành trình nhập khẩu thiết bị chất lượng cao về kho lưu trữ, kiểm định nghiêm ngặt và vận chuyển lắp đặt tận nhà nhanh chóng trong 30 phút.
           </p>
@@ -891,7 +891,7 @@ export default function DeliveryCanvas() {
             
             {/* Left status log */}
             <div className="flex items-center gap-3 flex-1">
-              <div className="p-2.5 bg-[#0a84ff]/10 rounded-xl text-[#0a84ff]">
+              <div className="p-2.5 bg-[#1066e6]/10 rounded-xl text-[#1066e6]">
                 <Package className="w-5 h-5 animate-pulse" />
               </div>
               <div className="text-left">

@@ -29,10 +29,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-header ${
         scrolled
-          ? "h-16 glass-header shadow-md"
-          : "h-20 bg-transparent border-b border-transparent"
+          ? "h-16 shadow-md"
+          : "h-20 border-b border-slate-100/50"
       }`}
     >
       <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -60,14 +60,14 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={`relative font-semibold text-sm transition-colors py-2 ${
-                  isActive ? "text-[#0a84ff]" : "text-[#1e293b]/70 hover:text-[#0a84ff]"
+                  isActive ? "text-[#1066e6]" : "text-[#1e293b]/70 hover:text-[#1066e6]"
                 }`}
               >
                 {item.name}
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#0a84ff] rounded-full"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#1066e6] rounded-full"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -80,7 +80,7 @@ export default function Header() {
         <div className="hidden md:flex items-center gap-4">
           <a
             href="tel:0989577792"
-            className="flex items-center gap-2 bg-[#0a84ff] hover:bg-[#0056b3] text-white px-4 py-2 rounded-2xl font-bold text-sm transition-all shadow-md shadow-[#0a84ff]/20 btn-pulse cursor-pointer"
+            className="flex items-center gap-2 bg-[#1066e6] hover:bg-[#094cb0] text-white px-4 py-2 rounded-2xl font-bold text-sm transition-all shadow-md shadow-[#1066e6]/20 btn-pulse cursor-pointer"
           >
             <Phone className="w-4 h-4" aria-hidden="true" />
             0989.577.792
@@ -91,7 +91,7 @@ export default function Header() {
         <div className="flex md:hidden items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-[#1e293b] p-2 hover:bg-[#0a84ff]/10 rounded-xl transition-colors cursor-pointer"
+            className="text-[#1e293b] p-2 hover:bg-[#1066e6]/10 rounded-xl transition-colors cursor-pointer"
             aria-label={mobileMenuOpen ? "Đóng menu" : "Mở menu"}
           >
             {mobileMenuOpen ? (
@@ -111,7 +111,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden border-b border-[#0a84ff]/10 glass-header absolute top-full left-0 right-0 overflow-hidden shadow-xl"
+            className="md:hidden border-b border-[#1066e6]/10 glass-header absolute top-full left-0 right-0 overflow-hidden shadow-xl"
           >
             <div className="px-4 pt-2 pb-6 space-y-2 flex flex-col">
               {navItems.map((item) => {
@@ -123,8 +123,8 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-4 py-3 rounded-2xl font-semibold text-sm transition-colors ${
                       isActive
-                        ? "bg-[#0a84ff]/10 text-[#0a84ff]"
-                        : "text-[#1e293b]/70 hover:bg-[#0a84ff]/5 hover:text-[#0a84ff]"
+                        ? "bg-[#1066e6]/10 text-[#1066e6]"
+                        : "text-[#1e293b]/70 hover:bg-[#1066e6]/5 hover:text-[#1066e6]"
                     }`}
                   >
                     {item.name}
@@ -134,7 +134,7 @@ export default function Header() {
               <div className="pt-4 px-4">
                 <a
                   href="tel:0989577792"
-                  className="flex items-center justify-center gap-2 bg-[#0a84ff] hover:bg-[#0056b3] text-white py-3 rounded-2xl font-bold transition-all shadow-md shadow-[#0a84ff]/25"
+                  className="flex items-center justify-center gap-2 bg-[#1066e6] hover:bg-[#094cb0] text-white py-3 rounded-2xl font-bold transition-all shadow-md shadow-[#1066e6]/25"
                 >
                   <Phone className="w-4 h-4" aria-hidden="true" />
                   Gọi Ngay: 0989.577.792

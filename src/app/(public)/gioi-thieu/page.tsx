@@ -38,11 +38,11 @@ export default function GioiThieu() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Subpage Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest">Về Chúng Tôi</span>
+          <span className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest">Về Chúng Tôi</span>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1e293b]">
             Điện Lạnh Tận Nhà
           </h1>
-          <div className="h-1 bg-[#0a84ff] w-16 mx-auto mt-4 rounded-full" />
+          <div className="h-1 bg-[#1066e6] w-16 mx-auto mt-4 rounded-full" />
           <p className="mt-4 text-[#1e293b]/70 text-base md:text-lg">
             Hành trình xây dựng niềm tin từ chất lượng dịch vụ sửa chữa và bảo dưỡng thiết bị gia dụng tại khu vực TP.HCM.
           </p>
@@ -66,7 +66,7 @@ export default function GioiThieu() {
           </div>
           
           {/* Card Showcase */}
-          <div className="bg-gradient-to-tr from-[#0056b3] to-[#0a84ff] p-8 rounded-[30px] text-white shadow-xl relative overflow-hidden">
+          <div className="bg-gradient-to-tr from-[#094cb0] to-[#1066e6] p-8 rounded-[30px] text-white shadow-xl relative overflow-hidden">
             <div className="absolute top-[-10%] right-[-10%] w-40 h-40 bg-white/10 rounded-full blur-2xl" />
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               <BadgeCheck className="w-6 h-6" />
@@ -107,8 +107,8 @@ export default function GioiThieu() {
                   whileHover={{ y: -8 }}
                   className="bg-white p-6 rounded-[20px] border border-slate-100 shadow-sm transition-all duration-300 group"
                 >
-                  <div className="mb-4 inline-flex p-3 bg-[#f5f9ff] rounded-xl text-[#0a84ff] group-hover:scale-110 group-hover:rotate-8 transition-all">
-                    <Icon className="w-6 h-6 text-[#0a84ff]" aria-hidden="true" />
+                  <div className="mb-4 inline-flex p-3 bg-[#f5f9ff] rounded-xl text-[#1066e6] group-hover:scale-110 group-hover:rotate-8 transition-all">
+                    <Icon className="w-6 h-6 text-[#1066e6]" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-bold text-[#1e293b] mb-2">{v.title}</h3>
                   <p className="text-xs sm:text-sm text-[#1e293b]/70 leading-relaxed">{v.desc}</p>
@@ -123,10 +123,10 @@ export default function GioiThieu() {
           <h3 className="text-xl font-bold text-[#1e293b]">Cần Hỗ Trợ Tư Vấn Ngay?</h3>
           <p className="text-[#1e293b]/70 text-sm mt-2">Chúng tôi phục vụ khách hàng trên toàn địa bàn các quận, huyện tại TP.HCM.</p>
           <div className="mt-6 flex justify-center gap-4">
-            <a href="tel:0989577792" className="bg-[#0a84ff] hover:bg-[#0056b3] text-white font-bold px-6 py-3 rounded-xl shadow-md text-sm transition-all">
+            <a href="tel:0989577792" className="bg-[#1066e6] hover:bg-[#094cb0] text-white font-bold px-6 py-3 rounded-xl shadow-md text-sm transition-all">
               Gọi Sửa Máy Ngay
             </a>
-            <Link href="/lien-he" className="bg-[#f5f9ff] text-[#0a84ff] border border-[#0a84ff]/20 hover:bg-[#0a84ff]/5 font-bold px-6 py-3 rounded-xl text-sm transition-all">
+            <Link href="/lien-he" className="bg-[#f5f9ff] text-[#1066e6] border border-[#1066e6]/20 hover:bg-[#1066e6]/5 font-bold px-6 py-3 rounded-xl text-sm transition-all">
               Đặt Lịch Hẹn
             </Link>
           </div>

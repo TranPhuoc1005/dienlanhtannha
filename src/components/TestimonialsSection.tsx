@@ -57,7 +57,7 @@ export default function TestimonialsSection() {
     <section id="danh-gia" className="py-24 bg-white relative overflow-hidden z-10 font-sans">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none select-none">
-        <Quote className="absolute top-10 left-10 w-96 h-96 text-[#0a84ff]" aria-hidden="true" />
+        <Quote className="absolute top-10 left-10 w-96 h-96 text-[#1066e6]" aria-hidden="true" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -67,7 +67,7 @@ export default function TestimonialsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest"
+            className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest"
           >
             Đánh giá từ khách hàng
           </motion.h2>
@@ -97,10 +97,10 @@ export default function TestimonialsSection() {
                 animate={{ opacity: 1, scale: 1.02, x: 0 }}
                 exit={{ opacity: 0, scale: 0.95, x: -50 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="w-full glass-card p-8 md:p-12 rounded-[20px] relative border border-slate-100 shadow-xl flex flex-col justify-between"
+                className="w-full glass-card bg-white/65 p-8 md:p-12 rounded-[20px] relative border border-slate-100 shadow-xl flex flex-col justify-between"
               >
                 {/* Quote Icon */}
-                <Quote className="absolute top-6 right-8 w-12 h-12 text-[#0a84ff]/10 rotate-180" aria-hidden="true" />
+                <Quote className="absolute top-6 right-8 w-12 h-12 text-[#1066e6]/10 rotate-180" aria-hidden="true" />
 
                 {/* Rating stars */}
                 <div className="flex gap-1 mb-6 text-amber-400">
@@ -116,12 +116,12 @@ export default function TestimonialsSection() {
 
                 {/* Customer Meta */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-tr from-[#0a84ff] to-[#0056b3] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
+                  <div className="w-12 h-12 bg-gradient-to-tr from-[#1066e6] to-[#094cb0] rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md">
                     {testimonials[activeIndex].name.charAt(0)}
                   </div>
                   <div>
                     <h4 className="font-bold text-[#1e293b]">{testimonials[activeIndex].name}</h4>
-                    <p className="text-xs font-semibold text-[#0a84ff] uppercase tracking-wider mt-0.5">
+                    <p className="text-xs font-semibold text-[#1066e6] uppercase tracking-wider mt-0.5">
                       {testimonials[activeIndex].role}
                     </p>
                   </div>
@@ -133,14 +133,14 @@ export default function TestimonialsSection() {
           {/* Left / Right Arrow navigation buttons */}
           <button
             onClick={handlePrev}
-            className="absolute left-[-20px] md:left-[-60px] top-1/2 -translate-y-1/2 bg-white text-[#1e293b] p-3 rounded-full shadow-lg border border-slate-100 cursor-pointer hover:text-[#0a84ff] hover:scale-110 transition-all z-20"
+            className="absolute left-[-20px] md:left-[-60px] top-1/2 -translate-y-1/2 bg-white text-[#1e293b] p-3 rounded-full shadow-lg border border-slate-100 cursor-pointer hover:text-[#1066e6] hover:scale-110 transition-all z-20"
             aria-label="Đánh giá trước"
           >
             <ChevronLeft className="w-5 h-5" aria-hidden="true" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-[-20px] md:right-[-60px] top-1/2 -translate-y-1/2 bg-white text-[#1e293b] p-3 rounded-full shadow-lg border border-slate-100 cursor-pointer hover:text-[#0a84ff] hover:scale-110 transition-all z-20"
+            className="absolute right-[-20px] md:right-[-60px] top-1/2 -translate-y-1/2 bg-white text-[#1e293b] p-3 rounded-full shadow-lg border border-slate-100 cursor-pointer hover:text-[#1066e6] hover:scale-110 transition-all z-20"
             aria-label="Đánh giá tiếp theo"
           >
             <ChevronRight className="w-5 h-5" aria-hidden="true" />
@@ -153,7 +153,7 @@ export default function TestimonialsSection() {
                 key={index}
                 onClick={() => setActiveIndex(index)}
                 className={`h-2.5 rounded-full transition-all cursor-pointer ${
-                  activeIndex === index ? "w-8 bg-[#0a84ff]" : "w-2.5 bg-slate-200"
+                  activeIndex === index ? "w-8 bg-[#1066e6]" : "w-2.5 bg-slate-200"
                 }`}
                 aria-label={`Đi tới đánh giá ${index + 1}`}
               />

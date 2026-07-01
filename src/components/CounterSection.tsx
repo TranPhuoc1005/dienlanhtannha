@@ -93,7 +93,7 @@ export default function CounterSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-r from-[#0056b3] to-[#0a84ff] relative overflow-hidden z-10 font-sans select-none">
+    <section className="py-20 bg-gradient-to-r from-[#094cb0] to-[#1066e6] relative overflow-hidden z-10 font-sans select-none">
       {/* Decorative background shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-white blur-3xl" />

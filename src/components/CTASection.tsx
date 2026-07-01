@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function CTASection() {
   return (
-    <section className="py-24 bg-gradient-to-br from-[#0056b3] to-[#0a84ff] relative overflow-hidden z-10 font-sans select-none" aria-labelledby="cta-heading">
+    <section className="py-24 bg-gradient-to-br from-[#094cb0] to-[#1066e6] relative overflow-hidden z-10 font-sans select-none" aria-labelledby="cta-heading">
       <h2 id="cta-heading" className="sr-only">Kêu gọi hành động</h2>
       
       {/* 3D Glowing Lights Background */}
@@ -92,7 +92,7 @@ export default function CTASection() {
         >
           <a
             href="tel:0932188892"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-[#0a84ff] hover:bg-slate-50 px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-black/10 shimmer-btn cursor-pointer"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-[#1066e6] hover:bg-slate-50 px-8 py-4 rounded-2xl font-bold transition-all shadow-xl shadow-black/10 shimmer-btn cursor-pointer"
           >
             <Phone className="w-5 h-5" aria-hidden="true" />
             0932.188.892 (Anh Tâm)

@@ -37,7 +37,7 @@ export default function LoadingScreen() {
                 animate={{ rotate: 360 }}
                 transition={{ repeat: Infinity, duration: 5, ease: "linear" }}
               >
-                <Snowflake className="w-12 h-12 text-[#0a84ff]" aria-hidden="true" />
+                <Snowflake className="w-12 h-12 text-[#1066e6]" aria-hidden="true" />
               </motion.div>
             </motion.div>
             
@@ -62,9 +62,9 @@ export default function LoadingScreen() {
             </motion.p>
 
             {/* Bottom Progress bar */}
-            <div className="w-32 h-1 bg-[#0a84ff]/10 rounded-full mt-6 overflow-hidden">
+            <div className="w-32 h-1 bg-[#1066e6]/10 rounded-full mt-6 overflow-hidden">
               <motion.div
-                className="h-full bg-[#0a84ff] rounded-full"
+                className="h-full bg-[#1066e6] rounded-full"
                 initial={{ width: 0 }}
                 animate={{ width: "100%" }}
                 transition={{ duration: 1.1, ease: "easeInOut" }}

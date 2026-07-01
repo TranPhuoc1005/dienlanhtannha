@@ -36,11 +36,11 @@ export default function LienHe() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest">Liên hệ nhanh</span>
+          <span className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest">Liên hệ nhanh</span>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1e293b]">
             Kết Nối Với Chúng Tôi
           </h1>
-          <div className="h-1 bg-[#0a84ff] w-16 mx-auto mt-4 rounded-full" />
+          <div className="h-1 bg-[#1066e6] w-16 mx-auto mt-4 rounded-full" />
           <p className="mt-4 text-[#1e293b]/70 text-sm sm:text-base leading-relaxed">
             Điện Lạnh Tận Nhà hân hạnh phục vụ quý khách. Liên hệ đặt lịch hoặc phản ánh chất lượng dịch vụ qua các kênh sau.
           </p>
@@ -56,7 +56,7 @@ export default function LienHe() {
               {/* Address card */}
               <div className="bg-white p-6 rounded-[20px] border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="p-3 bg-[#f5f9ff] text-[#0a84ff] rounded-xl inline-flex mb-4">
+                  <div className="p-3 bg-[#f5f9ff] text-[#1066e6] rounded-xl inline-flex mb-4">
                     <MapPin className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="font-bold text-[#1e293b]">Địa chỉ cửa hàng</h3>
@@ -69,13 +69,13 @@ export default function LienHe() {
               {/* Hotline card */}
               <div className="bg-white p-6 rounded-[20px] border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="p-3 bg-[#f5f9ff] text-[#0a84ff] rounded-xl inline-flex mb-4">
+                  <div className="p-3 bg-[#f5f9ff] text-[#1066e6] rounded-xl inline-flex mb-4">
                     <Phone className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="font-bold text-[#1e293b]">Số Điện Thoại</h3>
                   <div className="flex flex-col text-xs text-[#1e293b]/70 mt-2">
-                    <a href="tel:0989577792" className="hover:text-[#0a84ff] font-bold text-sm text-[#0a84ff]">0989.577.792</a>
-                    <a href="tel:0932188892" className="hover:text-[#0a84ff] font-bold text-sm text-[#0a84ff] mt-1">0932.188.892 (Anh Tâm)</a>
+                    <a href="tel:0989577792" className="hover:text-[#1066e6] font-bold text-sm text-[#1066e6]">0989.577.792</a>
+                    <a href="tel:0932188892" className="hover:text-[#1066e6] font-bold text-sm text-[#1066e6] mt-1">0932.188.892 (Anh Tâm)</a>
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@ export default function LienHe() {
               {/* Open hour card */}
               <div className="bg-white p-6 rounded-[20px] border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="p-3 bg-[#f5f9ff] text-[#0a84ff] rounded-xl inline-flex mb-4">
+                  <div className="p-3 bg-[#f5f9ff] text-[#1066e6] rounded-xl inline-flex mb-4">
                     <Clock className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="font-bold text-[#1e293b]">Giờ Hoạt Động</h3>
@@ -96,7 +96,7 @@ export default function LienHe() {
               {/* Chat online card */}
               <div className="bg-white p-6 rounded-[20px] border border-slate-100 shadow-sm flex flex-col justify-between">
                 <div>
-                  <div className="p-3 bg-[#f5f9ff] text-[#0a84ff] rounded-xl inline-flex mb-4">
+                  <div className="p-3 bg-[#f5f9ff] text-[#1066e6] rounded-xl inline-flex mb-4">
                     <MessageCircle className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <h3 className="font-bold text-[#1e293b]">Hỗ trợ Zalo</h3>
@@ -107,7 +107,7 @@ export default function LienHe() {
                     href="https://zalo.me/0932188892"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-bold text-[#0a84ff] hover:underline mt-2 inline-block"
+                    className="text-xs font-bold text-[#1066e6] hover:underline mt-2 inline-block"
                   >
                     Nhắn Zalo Ngay
                   </a>
@@ -145,7 +145,7 @@ export default function LienHe() {
                     placeholder="Nguyễn Văn A"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
                   />
                 </div>
 
@@ -157,7 +157,7 @@ export default function LienHe() {
                     placeholder="0989577792"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
                   />
                 </div>
 
@@ -169,7 +169,7 @@ export default function LienHe() {
                     placeholder="Tôi cần đóng góp ý kiến..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                    className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
                   />
                 </div>
 
@@ -179,7 +179,7 @@ export default function LienHe() {
 
                 <button
                   type="submit"
-                  className="w-full flex items-center justify-center gap-2 bg-[#0a84ff] hover:bg-[#0056b3] text-white py-4 rounded-xl font-bold transition-all shadow-md shadow-[#0a84ff]/20 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 bg-[#1066e6] hover:bg-[#094cb0] text-white py-4 rounded-xl font-bold transition-all shadow-md shadow-[#1066e6]/20 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   Gửi Phản Hồi

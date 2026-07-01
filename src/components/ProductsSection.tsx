@@ -1,77 +1,22 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { dbService, Product } from "@/lib/dbService";
 
 const categories = ["Tất Cả", "Máy Lạnh", "Tủ Lạnh", "Máy Giặt", "Khác"];
 
-const products = [
-  {
-    id: 1,
-    name: "Máy lạnh Daikin Inverter 1.5 HP",
-    category: "Máy Lạnh",
-    price: "Liên hệ báo giá",
-    status: "Mới 95%",
-    badge: "Bán chạy",
-    image: "/products/ml-daikin.png",
-    desc: "Máy lạnh chạy êm ái, tiết kiệm điện vượt trội, làm mát phòng nhanh chóng.",
-  },
-  {
-    id: 2,
-    name: "Tủ lạnh Panasonic Inverter 322L",
-    category: "Tủ Lạnh",
-    price: "Liên hệ báo giá",
-    status: "Mới 98%",
-    badge: "Tiết Kiệm Điện",
-    image: "/products/tl-panasonic.png",
-    desc: "Công nghệ cấp đông mềm thế hệ mới Prime Fresh+ bảo quản thực phẩm trọn vị.",
-  },
-  {
-    id: 3,
-    name: "Máy giặt LG Lồng Ngang 9 kg",
-    category: "Máy Giặt",
-    price: "Liên hệ báo giá",
-    status: "Mới 99%",
-    badge: "Giá Cực Tốt",
-    image: "/products/mg-lg.png",
-    desc: "Hệ thống truyền động trực tiếp AI DD tự động bảo vệ quần áo tối ưu.",
-  },
-  {
-    id: 4,
-    name: "Máy lạnh Panasonic Inverter 1 HP",
-    category: "Máy Lạnh",
-    price: "Liên hệ báo giá",
-    status: "Mới 90%",
-    badge: "Giá Rẻ",
-    image: "/products/ml-panasonic.png",
-    desc: "Bộ lọc kháng khuẩn Nanoe-G, cảm biến Eco tích hợp thông minh tiết kiệm năng lượng.",
-  },
-  {
-    id: 5,
-    name: "Tủ đông Aqua 220L",
-    category: "Khác",
-    price: "Liên hệ báo giá",
-    status: "Mới 97%",
-    badge: "Đông Sâu",
-    image: "/products/td-aqua.png",
-    desc: "Hệ thống làm lạnh đa chiều 3D, đông lạnh nhanh, thích hợp trữ đông gia đình.",
-  },
-  {
-    id: 6,
-    name: "Máy nước nóng Ariston 4500W",
-    category: "Khác",
-    price: "Liên hệ báo giá",
-    status: "Mới 99%",
-    badge: "Hàng Lướt",
-    image: "/products/mn-ariston.png",
-    desc: "Hệ thống an toàn kép TSS, làm nóng tức thì, thiết kế mỏng nhẹ sang trọng.",
-  },
-];
+function ProductCard({ p }: { p: Product }) {
+  const imageUrls = p.image_url ? p.image_url.split(/(?<!base64),/).map(s => s.trim()).filter(Boolean) : [];
+  const imageUrl = imageUrls[0] || "/products/ml-daikin.png";
+  const badgeText = p.badge || (p.stock > 0 ? "Còn hàng" : "Hết hàng");
+  const statusText = p.status || "Mới 95%";
+  const descText = p.desc || "Thiết bị điện lạnh chất lượng cao đã qua kiểm định kỹ lưỡng.";
+  const priceText = p.price > 0 ? p.price.toLocaleString("vi-VN") + "đ" : "Liên hệ báo giá";
 
-function ProductCard({ p }: { p: typeof products[0] }) {
   return (
     <motion.div
       layout
@@ -88,14 +33,13 @@ function ProductCard({ p }: { p: typeof products[0] }) {
       
       {/* Image wrapper */}
       <div className="h-56 relative bg-gradient-to-b from-[#f5f9ff] to-white overflow-hidden flex items-center justify-center select-none border-b border-slate-100/80 ice-shimmer">
-        
         {/* Frost Layer overlay */}
         <div className="frost-overlay" />
         
         {/* Actual Realistic Product Image */}
         <div className="relative w-44 h-44 group-hover:scale-105 transition-transform duration-500 z-[1]">
           <Image
-            src={p.image}
+            src={imageUrl}
             alt={p.name}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -112,7 +56,7 @@ function ProductCard({ p }: { p: typeof products[0] }) {
             href={`https://zalo.me/0932188892?text=Tôi%20quan%20tâm%20sản%20phẩm%20${encodeURIComponent(p.name)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 bg-[#0a84ff] hover:bg-[#0056b3] text-white py-3 rounded-xl font-bold text-sm shadow-md transition-colors cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-secondary text-white py-3 rounded-xl font-bold text-sm shadow-md transition-colors cursor-pointer"
           >
             Liên hệ Zalo tư vấn
           </a>
@@ -128,7 +72,7 @@ function ProductCard({ p }: { p: typeof products[0] }) {
           }}
           className="absolute top-4 left-4 bg-emerald-500 text-white text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full shadow-sm z-[3]"
         >
-          {p.badge}
+          {badgeText}
         </motion.span>
       </div>
 
@@ -136,20 +80,20 @@ function ProductCard({ p }: { p: typeof products[0] }) {
       <div className="p-6 flex-grow flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider">{p.category}</span>
-            <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2.5 py-0.5 rounded-full">{p.status}</span>
+            <span className="text-xs font-bold text-primary uppercase tracking-wider">{p.category}</span>
+            <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2.5 py-0.5 rounded-full">{statusText}</span>
           </div>
-          <h4 className="text-base font-bold text-[#1e293b] group-hover:text-[#0a84ff] transition-colors line-clamp-1">
+          <h4 className="text-base font-bold text-[#1e293b] group-hover:text-primary transition-colors line-clamp-1">
             {p.name}
           </h4>
           <p className="text-xs text-[#1e293b]/60 leading-relaxed mt-2 line-clamp-2">
-            {p.desc}
+            {descText}
           </p>
         </div>
         
         <div className="mt-6 pt-4 border-t border-slate-100/80 flex items-center justify-between">
-          <span className="text-base font-extrabold text-[#0a84ff]">{p.price}</span>
-          <Link href="/san-pham" className="text-xs font-bold text-[#1e293b]/50 hover:text-[#0a84ff] inline-flex items-center gap-1">
+          <span className="text-base font-extrabold text-primary">{priceText}</span>
+          <Link href="/san-pham" className="text-xs font-bold text-[#1e293b]/50 hover:text-primary inline-flex items-center gap-1">
             Xem tất cả
             <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
           </Link>
@@ -161,6 +105,22 @@ function ProductCard({ p }: { p: typeof products[0] }) {
 
 export default function ProductsSection() {
   const [selectedCat, setSelectedCat] = useState("Tất Cả");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const data = await dbService.getProducts();
+        setProducts(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
 
   const filteredProducts = selectedCat === "Tất Cả"
     ? products
@@ -177,7 +137,7 @@ export default function ProductsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
-              className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest"
+              className="text-xs uppercase font-extrabold text-primary tracking-widest"
             >
               Sản Phẩm Thanh Lý
             </motion.h2>
@@ -200,8 +160,8 @@ export default function ProductsSection() {
                 onClick={() => setSelectedCat(cat)}
                 className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                   selectedCat === cat
-                    ? "bg-[#0a84ff] text-white shadow-md shadow-[#0a84ff]/25"
-                    : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#0a84ff]/5 hover:text-[#0a84ff] border border-slate-100"
+                    ? "bg-primary text-white shadow-md shadow-primary/25"
+                    : "bg-brand-light text-[#1e293b]/70 hover:bg-primary/5 hover:text-primary border border-slate-100"
                 }`}
               >
                 {cat}
@@ -211,16 +171,22 @@ export default function ProductsSection() {
         </div>
 
         {/* Grid and Animation */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProducts.map((p) => (
-              <ProductCard key={p.id} p={p} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        {loading ? (
+          <div className="text-center py-20 text-slate-400">
+            Đang tải sản phẩm...
+          </div>
+        ) : (
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((p) => (
+                <ProductCard key={p.id} p={p} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
       </div>
     </section>
   );

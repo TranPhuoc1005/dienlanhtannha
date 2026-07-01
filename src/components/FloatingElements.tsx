@@ -56,7 +56,7 @@ export default function FloatingElements() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-[1]" aria-hidden="true">
       {/* 1. Snowflake Top Left */}
       <motion.div
-        className="absolute top-[15%] left-[6%] text-[#0a84ff]/10 hidden md:block"
+        className="absolute top-[15%] left-[6%] text-[#1066e6]/10 hidden md:block"
         style={{ x: el1X, y: el1Y }}
         animate={{
           y: [0, -18, 0],
@@ -72,7 +72,7 @@ export default function FloatingElements() {
 
       {/* 2. Gradient Circle Top Right */}
       <motion.div
-        className="absolute top-[20%] right-[8%] w-40 h-40 rounded-full bg-gradient-to-tr from-[#0a84ff]/10 to-[#0056b3]/5 blur-3xl"
+        className="absolute top-[20%] right-[8%] w-40 h-40 rounded-full bg-gradient-to-tr from-[#1066e6]/10 to-[#094cb0]/5 blur-3xl"
         style={{ x: el2X, y: el2Y }}
         animate={{
           y: [0, 25, 0],
@@ -87,7 +87,7 @@ export default function FloatingElements() {
 
       {/* 3. Snowflake Mid Left */}
       <motion.div
-        className="absolute top-[50%] left-[4%] text-[#0a84ff]/8"
+        className="absolute top-[50%] left-[4%] text-[#1066e6]/8"
         style={{ x: el3X, y: el3Y }}
         animate={{
           y: [0, -22, 0],
@@ -103,7 +103,7 @@ export default function FloatingElements() {
 
       {/* 4. Gradient Circle Bottom Left */}
       <motion.div
-        className="absolute bottom-[20%] left-[8%] w-56 h-56 rounded-full bg-gradient-to-br from-[#0a84ff]/5 to-[#0056b3]/10 blur-3xl"
+        className="absolute bottom-[20%] left-[8%] w-56 h-56 rounded-full bg-gradient-to-br from-[#1066e6]/5 to-[#094cb0]/10 blur-3xl"
         style={{ x: el4X, y: el4Y }}
         animate={{
           y: [0, -35, 0],
@@ -118,7 +118,7 @@ export default function FloatingElements() {
 
       {/* 5. Snowflake Bottom Right */}
       <motion.div
-        className="absolute bottom-[15%] right-[5%] text-[#0a84ff]/12 hidden md:block"
+        className="absolute bottom-[15%] right-[5%] text-[#1066e6]/12 hidden md:block"
         style={{ x: el5X, y: el5Y }}
         animate={{
           y: [0, -15, 0],
@@ -134,7 +134,7 @@ export default function FloatingElements() {
 
       {/* 6. Dashed Light Curve (SVG) */}
       <svg
-        className="absolute top-[40%] right-[3%] w-[320px] h-[220px] opacity-10 stroke-[#0a84ff] hidden lg:block"
+        className="absolute top-[40%] right-[3%] w-[320px] h-[220px] opacity-10 stroke-[#1066e6] hidden lg:block"
         viewBox="0 0 300 200"
         fill="none"
       >

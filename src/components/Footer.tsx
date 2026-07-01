@@ -66,12 +66,12 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Dịch Vụ Chính</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Sửa chữa điện lạnh</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Lắp đặt thiết bị</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Vệ sinh máy giặt, máy lạnh</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Bảo trì định kỳ</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Trao đổi cũ - mới</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Thanh lý điện lạnh cũ</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Sửa chữa điện lạnh</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Lắp đặt thiết bị</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Vệ sinh máy giặt, máy lạnh</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Bảo trì định kỳ</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Trao đổi cũ - mới</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Thanh lý điện lạnh cũ</Link></li>
             </ul>
           </div>
 
@@ -79,11 +79,11 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Liên Kết Nhanh</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-[#0a84ff] transition-colors">Trang chủ</Link></li>
-              <li><Link href="/gioi-thieu" className="hover:text-[#0a84ff] transition-colors">Giới thiệu</Link></li>
-              <li><Link href="/dich-vu" className="hover:text-[#0a84ff] transition-colors">Bảng giá dịch vụ</Link></li>
-              <li><Link href="/san-pham" className="hover:text-[#0a84ff] transition-colors">Sản phẩm thanh lý</Link></li>
-              <li><Link href="/lien-he" className="hover:text-[#0a84ff] transition-colors">Liên hệ & Đặt hẹn</Link></li>
+              <li><Link href="/" className="hover:text-[#1066e6] transition-colors">Trang chủ</Link></li>
+              <li><Link href="/gioi-thieu" className="hover:text-[#1066e6] transition-colors">Giới thiệu</Link></li>
+              <li><Link href="/dich-vu" className="hover:text-[#1066e6] transition-colors">Bảng giá dịch vụ</Link></li>
+              <li><Link href="/san-pham" className="hover:text-[#1066e6] transition-colors">Sản phẩm thanh lý</Link></li>
+              <li><Link href="/lien-he" className="hover:text-[#1066e6] transition-colors">Liên hệ & Đặt hẹn</Link></li>
             </ul>
           </div>
 
@@ -91,18 +91,18 @@ export default function Footer() {
           <div className="space-y-3">
             <h3 className="font-bold text-sm text-white uppercase tracking-wider mb-4">Thông Tin Liên Hệ</h3>
             <div className="flex items-start gap-2 text-sm">
-              <MapPin className="w-5 h-5 text-[#0a84ff] shrink-0 mt-0.5" aria-hidden="true" />
+              <MapPin className="w-5 h-5 text-[#1066e6] shrink-0 mt-0.5" aria-hidden="true" />
               <span>36 Đường Số 1, Phường Bình Hưng Hòa, Quận Bình Tân, TP.HCM</span>
             </div>
             <div className="flex items-start gap-2 text-sm">
-              <Phone className="w-5 h-5 text-[#0a84ff] shrink-0 mt-0.5" aria-hidden="true" />
+              <Phone className="w-5 h-5 text-[#1066e6] shrink-0 mt-0.5" aria-hidden="true" />
               <div className="flex flex-col">
-                <a href="tel:0989577792" className="hover:text-[#0a84ff] transition-colors font-bold">0989.577.792</a>
-                <a href="tel:0932188892" className="hover:text-[#0a84ff] transition-colors font-bold">0932.188.892 (Anh Tâm)</a>
+                <a href="tel:0989577792" className="hover:text-[#1066e6] transition-colors font-bold">0989.577.792</a>
+                <a href="tel:0932188892" className="hover:text-[#1066e6] transition-colors font-bold">0932.188.892 (Anh Tâm)</a>
               </div>
             </div>
             <div className="flex items-center gap-2 text-sm">
-              <Clock3 className="w-5 h-5 text-[#0a84ff] shrink-0" aria-hidden="true" />
+              <Clock3 className="w-5 h-5 text-[#1066e6] shrink-0" aria-hidden="true" />
               <span>Hoạt động: 7:00 - 21:00 (Cả CN & Ngày lễ)</span>
             </div>
           </div>
@@ -116,7 +116,7 @@ export default function Footer() {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-[#0a84ff] hover:scale-110 hover:rotate-[8deg] transition-all duration-300"
+              className="text-white/60 hover:text-[#1066e6] hover:scale-110 hover:rotate-[8deg] transition-all duration-300"
               aria-label="Liên kết Facebook"
             >
               <FacebookIcon className="w-5 h-5" aria-hidden="true" />
@@ -125,7 +125,7 @@ export default function Footer() {
               href="https://youtube.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/60 hover:text-[#0a84ff] hover:scale-110 hover:rotate-[8deg] transition-all duration-300"
+              className="text-white/60 hover:text-[#1066e6] hover:scale-110 hover:rotate-[8deg] transition-all duration-300"
               aria-label="Liên kết Youtube"
             >
               <YoutubeIcon className="w-5 h-5" aria-hidden="true" />

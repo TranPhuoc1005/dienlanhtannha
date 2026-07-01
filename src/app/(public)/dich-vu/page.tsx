@@ -121,11 +121,11 @@ export default function DichVu() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest">Dịch vụ & Bảng giá</span>
+          <span className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest">Dịch vụ & Bảng giá</span>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1e293b]">
             Chi Tiết Dịch Vụ Điện Lạnh
           </h1>
-          <div className="h-1 bg-[#0a84ff] w-16 mx-auto mt-4 rounded-full" />
+          <div className="h-1 bg-[#1066e6] w-16 mx-auto mt-4 rounded-full" />
           <p className="mt-4 text-[#1e293b]/70 text-base">
             Bảng giá minh bạch công khai cùng chi tiết quy trình xử lý chuyên nghiệp của Điện Lạnh Tận Nhà.
           </p>
@@ -149,7 +149,7 @@ export default function DichVu() {
                 {priceList.map((row, i) => (
                   <tr key={i} className="hover:bg-[#f5f9ff]/50 transition-colors">
                     <td className="py-4 font-bold">{row.item}</td>
-                    <td className="py-4 text-[#0a84ff] font-extrabold">{row.price}</td>
+                    <td className="py-4 text-[#1066e6] font-extrabold">{row.price}</td>
                     <td className="py-4 text-[#1e293b]/60 hidden md:table-cell">{row.note}</td>
                   </tr>
                 ))}
@@ -177,8 +177,8 @@ export default function DichVu() {
                 >
                   <div>
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-3 bg-[#f5f9ff] text-[#0a84ff] rounded-xl border border-slate-50">
-                        <Icon className="w-6 h-6 text-[#0a84ff]" aria-hidden="true" />
+                      <div className="p-3 bg-[#f5f9ff] text-[#1066e6] rounded-xl border border-slate-50">
+                        <Icon className="w-6 h-6 text-[#1066e6]" aria-hidden="true" />
                       </div>
                       <h3 className="text-xl font-bold text-[#1e293b]">{s.title}</h3>
                     </div>
@@ -214,7 +214,7 @@ export default function DichVu() {
                 placeholder="Nguyễn Văn A"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
               />
             </div>
             
@@ -226,7 +226,7 @@ export default function DichVu() {
                 placeholder="0989577792"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
               />
             </div>
 
@@ -236,7 +236,7 @@ export default function DichVu() {
                 id="service"
                 value={formData.service}
                 onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
               >
                 <option value="Sửa máy lạnh">Sửa chữa máy lạnh / tủ lạnh / máy giặt</option>
                 <option value="Vệ sinh máy lạnh">Vệ sinh máy lạnh / máy giặt</option>
@@ -254,7 +254,7 @@ export default function DichVu() {
                 placeholder="Máy lạnh hiệu Daikin chớp đèn đỏ không lạnh..."
                 value={formData.note}
                 onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#0a84ff] transition-all font-sans"
+                className="w-full bg-[#f5f9ff] border border-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#1066e6] transition-all font-sans"
               />
             </div>
 
@@ -264,7 +264,7 @@ export default function DichVu() {
 
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-2 bg-[#0a84ff] hover:bg-[#0056b3] text-white py-4 rounded-xl font-bold transition-all shadow-md shadow-[#0a84ff]/20 cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-[#1066e6] hover:bg-[#094cb0] text-white py-4 rounded-xl font-bold transition-all shadow-md shadow-[#1066e6]/20 cursor-pointer"
             >
               <Phone className="w-4 h-4" />
               Gửi yêu cầu sửa chữa

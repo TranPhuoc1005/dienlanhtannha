@@ -1,133 +1,27 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Phone, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import { dbService, Product } from "@/lib/dbService";
 
-// Extensive mock product list with realistic image paths
-const initialProducts = [
-  {
-    id: "ML-01",
-    name: "Máy lạnh Daikin Inverter 1.5 HP",
-    category: "Máy Lạnh",
-    brand: "Daikin",
-    capacity: "1.5 HP",
-    priceRange: "5-8 triệu",
-    price: "6.200.000đ",
-    status: "Mới 95%",
-    badge: "Bán chạy",
-    image: "/products/ml-daikin.png",
-    desc: "Máy lạnh chạy êm ái, tiết kiệm điện năng vượt trội, thích hợp cho phòng 15 - 20 m2.",
-    specs: {
-      "Công suất làm lạnh": "1.5 HP - 11.900 BTU",
-      "Công nghệ Inverter": "Có (Tiết kiệm điện)",
-      "Loại gas": "R32 (Thân thiện môi trường)",
-      "Nơi sản xuất": "Thái Lan",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  },
-  {
-    id: "TL-02",
-    name: "Tủ lạnh Panasonic Inverter 322L",
-    category: "Tủ Lạnh",
-    brand: "Panasonic",
-    capacity: "Trên 300L",
-    priceRange: "Trên 8 triệu",
-    price: "8.500.000đ",
-    status: "Mới 98%",
-    badge: "Tiết Kiệm Điện",
-    image: "/products/tl-panasonic.png",
-    desc: "Công nghệ đông mềm Prime Fresh+ giữ thực phẩm tươi ngon suốt 7 ngày không cần rã đông.",
-    specs: {
-      "Dung tích": "322 Lít",
-      "Số cửa": "2 cửa (Ngăn đá dưới)",
-      "Công nghệ Inverter": "Có (Tiết kiệm điện)",
-      "Khử mùi kháng khuẩn": "Blue Ag+ kháng khuẩn 99.99%",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  },
-  {
-    id: "MG-03",
-    name: "Máy giặt LG Lồng Ngang 9 kg",
-    category: "Máy Giặt",
-    brand: "LG",
-    capacity: "9 kg",
-    priceRange: "5-8 triệu",
-    price: "5.800.000đ",
-    status: "Mới 99%",
-    badge: "Giá Cực Tốt",
-    image: "/products/mg-lg.png",
-    desc: "Hệ thống truyền động trực tiếp AI DD bảo vệ sợi vải tối ưu, hoạt động cực kỳ êm ái.",
-    specs: {
-      "Khối lượng giặt": "9.0 kg",
-      "Kiểu máy giặt": "Lồng ngang (Cửa trước)",
-      "Động cơ": "Truyền động trực tiếp - AI DD",
-      "Tiết kiệm điện": "Inverter",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  },
-  {
-    id: "ML-04",
-    name: "Máy lạnh Panasonic Inverter 1 HP",
-    category: "Máy Lạnh",
-    brand: "Panasonic",
-    capacity: "1 HP",
-    priceRange: "Dưới 5 triệu",
-    price: "4.800.000đ",
-    status: "Mới 90%",
-    badge: "Giá Rẻ",
-    image: "/products/ml-panasonic.png",
-    desc: "Bộ lọc kháng khuẩn Nanoe-G lọc sạch bụi mịn PM2.5, phù hợp phòng ngủ nhỏ dưới 15 m2.",
-    specs: {
-      "Công suất làm lạnh": "1.0 HP - 9.000 BTU",
-      "Công nghệ Inverter": "Có (Tiết kiệm điện)",
-      "Khử mùi lọc khí": "Nanoe-G độc quyền",
-      "Loại gas": "R32",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  },
-  {
-    id: "TD-05",
-    name: "Tủ đông Aqua 220L",
-    category: "Khác",
-    brand: "Khác",
-    capacity: "Dưới 300L",
-    priceRange: "Dưới 5 triệu",
-    price: "3.900.000đ",
-    status: "Mới 97%",
-    badge: "Đông Sâu",
-    image: "/products/td-aqua.png",
-    desc: "Làm lạnh 3D nhanh sâu xuống -24°C, thích hợp cho việc tích trữ sữa, thịt cá lâu ngày.",
-    specs: {
-      "Dung tích": "220 Lít",
-      "Loại tủ đông": "1 ngăn đông - 2 cánh dỡ",
-      "Dàn lạnh": "Đồng nguyên chất (Siêu bền)",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  },
-  {
-    id: "MN-06",
-    name: "Máy nước nóng Ariston 4500W",
-    category: "Khác",
-    brand: "Khác",
-    capacity: "Khác",
-    priceRange: "Dưới 5 triệu",
-    price: "2.100.000đ",
-    status: "Mới 99%",
-    badge: "Hàng Lướt",
-    image: "/products/mn-ariston.png",
-    desc: "Hệ thống an toàn đồng bộ tích hợp ELCB chống giật gián tiếp và cảm biến nhiệt độ an toàn.",
-    specs: {
-      "Công suất": "4500 W",
-      "Loại máy": "Làm nóng trực tiếp (Có bơm trợ lực)",
-      "Bộ chống giật": "ELCB điện tử siêu nhạy",
-      "Thời gian bảo hành": "6 tháng tại cửa hàng"
-    }
-  }
-];
+interface MappedProduct {
+  id: string;
+  name: string;
+  category: string;
+  brand: string;
+  capacity: string;
+  priceRange: string;
+  price: string;
+  status: string;
+  badge: string;
+  image: string;
+  desc: string;
+  specs: Record<string, string>;
+}
 
-function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: () => void }) {
+function ProductCard({ p, onClick }: { p: MappedProduct; onClick: () => void }) {
   return (
     <motion.div
       layout
@@ -136,7 +30,7 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
       exit={{ opacity: 0, scale: 0.9 }}
       whileHover={{ y: -6, transition: { duration: 0.2 } }}
       onClick={onClick}
-      className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#0a84ff]/30 transition-all duration-300 glow-border-hover frost-container hover:shadow-md"
+      className="bg-white rounded-[20px] overflow-hidden border border-slate-100 shadow-sm flex flex-col group cursor-pointer hover:border-[#1066e6]/30 transition-all duration-300 glow-border-hover frost-container hover:shadow-md"
     >
       {/* Dynamic Water Drop Condensation simulation inside the card cover */}
       <div className="absolute top-2 left-1/3 water-drop opacity-0 group-hover:opacity-100 z-10" style={{ animationDelay: "0s" }} />
@@ -144,7 +38,6 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
 
       {/* Photo Visual */}
       <div className="h-48 relative bg-gradient-to-b from-[#f5f9ff] to-white overflow-hidden flex items-center justify-center select-none border-b border-slate-100/80 ice-shimmer">
-        
         {/* Frost Layer overlay */}
         <div className="frost-overlay" />
         
@@ -177,16 +70,16 @@ function ProductCard({ p, onClick }: { p: typeof initialProducts[0]; onClick: ()
       <div className="p-6 flex-grow flex flex-col justify-between">
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider">{p.category}</span>
+            <span className="text-xs font-bold text-[#1066e6] uppercase tracking-wider">{p.category}</span>
             <span className="text-xs font-bold text-emerald-500 bg-emerald-50 px-2 py-0.5 rounded-full">{p.status}</span>
           </div>
-          <h3 className="text-base font-bold text-[#1e293b] group-hover:text-[#0a84ff] transition-colors">{p.name}</h3>
+          <h3 className="text-base font-bold text-[#1e293b] group-hover:text-[#1066e6] transition-colors">{p.name}</h3>
           <p className="text-xs text-[#1e293b]/60 leading-relaxed mt-2 line-clamp-2">{p.desc}</p>
         </div>
 
         <div className="mt-6 pt-4 border-t border-slate-100/80 flex items-center justify-between">
-          <span className="text-base font-extrabold text-[#0a84ff]">{p.price}</span>
-          <span className="text-xs font-bold text-[#0a84ff] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+          <span className="text-base font-extrabold text-[#1066e6]">{p.price}</span>
+          <span className="text-xs font-bold text-[#1066e6] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
             Xem chi tiết
             <ArrowRight className="w-3.5 h-3.5" />
           </span>
@@ -200,14 +93,112 @@ export default function SanPham() {
   const [selectedCat, setSelectedCat] = useState("Tất Cả");
   const [selectedBrand, setSelectedBrand] = useState("Tất Cả");
   const [selectedPrice, setSelectedPrice] = useState("Tất Cả");
-  const [activeProduct, setActiveProduct] = useState<typeof initialProducts[0] | null>(null);
+  const [activeProduct, setActiveProduct] = useState<MappedProduct | null>(null);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  useEffect(() => {
+    setActiveImageIndex(0);
+  }, [activeProduct]);
+
+  const [dbProducts, setDbProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const data = await dbService.getProducts();
+        setDbProducts(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
 
   const categories = ["Tất Cả", "Máy Lạnh", "Tủ Lạnh", "Máy Giặt", "Khác"];
   const brands = ["Tất Cả", "Daikin", "Panasonic", "LG", "Khác"];
   const priceRanges = ["Tất Cả", "Dưới 5 triệu", "5-8 triệu", "Trên 8 triệu"];
 
+  // Mapping from DB format to page format
+  const mappedProducts: MappedProduct[] = dbProducts.map((p) => {
+    const nameLower = p.name.toLowerCase();
+    
+    // Brand
+    let brand = "Khác";
+    if (nameLower.includes("daikin")) brand = "Daikin";
+    else if (nameLower.includes("panasonic")) brand = "Panasonic";
+    else if (nameLower.includes("lg")) brand = "LG";
+
+    // Capacity
+    let capacity = "Khác";
+    if (nameLower.includes("1.5 hp") || nameLower.includes("1.5hp")) capacity = "1.5 HP";
+    else if (nameLower.includes("1 hp") || nameLower.includes("1hp")) capacity = "1 HP";
+    else if (nameLower.includes("9 kg") || nameLower.includes("9kg")) capacity = "9 kg";
+    else if (nameLower.includes("322")) capacity = "Trên 300L";
+    else if (nameLower.includes("220") || nameLower.includes("300")) capacity = "Dưới 300L";
+
+    // Price range
+    let priceRange = "Dưới 5 triệu";
+    if (p.price >= 5000000 && p.price <= 8000000) priceRange = "5-8 triệu";
+    else if (p.price > 8000000) priceRange = "Trên 8 triệu";
+
+    // Specs
+    let specs: Record<string, string> = {
+      "Thời gian bảo hành": "6 tháng tại cửa hàng"
+    };
+    if (p.category === "Máy Lạnh") {
+      specs = {
+        "Công suất làm lạnh": nameLower.includes("1.5") ? "1.5 HP - 11.900 BTU" : "1.0 HP - 9.000 BTU",
+        "Công nghệ Inverter": "Có (Tiết kiệm điện)",
+        "Loại gas": "R32 (Thân thiện môi trường)",
+        "Nơi sản xuất": "Thái Lan",
+        "Thời gian bảo hành": "6 tháng tại cửa hàng"
+      };
+    } else if (p.category === "Tủ Lạnh") {
+      specs = {
+        "Dung tích": "322 Lít",
+        "Số cửa": "2 cửa (Ngăn đá dưới)",
+        "Công nghệ Inverter": "Có (Tiết kiệm điện)",
+        "Khử mùi kháng khuẩn": "Blue Ag+ kháng khuẩn 99.99%",
+        "Thời gian bảo hành": "6 tháng tại cửa hàng"
+      };
+    } else if (p.category === "Máy Giặt") {
+      specs = {
+        "Khối lượng giặt": "9.0 kg",
+        "Kiểu máy giặt": "Lồng ngang (Cửa trước)",
+        "Động cơ": "Truyền động trực tiếp - AI DD",
+        "Tiết kiệm điện": "Inverter",
+        "Thời gian bảo hành": "6 tháng tại cửa hàng"
+      };
+    } else if (p.category === "Khác") {
+      specs = {
+        "Dung tích": nameLower.includes("đông") ? "220 Lít" : "4.5 kW",
+        "Dàn lạnh/Công suất": nameLower.includes("đông") ? "Đồng nguyên chất" : "4500 W",
+        "Tính năng nổi bật": nameLower.includes("đông") ? "Đông sâu -24°C" : "Chống giật ELCB",
+        "Thời gian bảo hành": "6 tháng tại cửa hàng"
+      };
+    }
+
+    return {
+      id: p.id.toString(),
+      name: p.name,
+      category: p.category,
+      brand,
+      capacity,
+      priceRange,
+      price: p.price > 0 ? p.price.toLocaleString("vi-VN") + "đ" : "Liên hệ báo giá",
+      status: p.status || "Mới 95%",
+      badge: p.badge || "Giá Tốt",
+      image: p.image_url || "/products/ml-daikin.png",
+      desc: p.desc || "Thiết bị điện lạnh chất lượng cao đã qua kiểm định kỹ lưỡng.",
+      specs
+    };
+  });
+
   // Filter logic
-  const filteredProducts = initialProducts.filter((p) => {
+  const filteredProducts = mappedProducts.filter((p) => {
     const matchCat = selectedCat === "Tất Cả" || p.category === selectedCat;
     const matchBrand = selectedBrand === "Tất Cả" || p.brand === selectedBrand;
     const matchPrice = selectedPrice === "Tất Cả" || p.priceRange === selectedPrice;
@@ -224,11 +215,11 @@ export default function SanPham() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest">Sản phẩm thanh lý</span>
+          <span className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest">Sản phẩm thanh lý</span>
           <h1 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1e293b]">
             Danh Sách Thiết Bị Giá Tốt
           </h1>
-          <div className="h-1 bg-[#0a84ff] w-16 mx-auto mt-4 rounded-full" />
+          <div className="h-1 bg-[#1066e6] w-16 mx-auto mt-4 rounded-full" />
           <p className="mt-4 text-[#1e293b]/70 text-sm sm:text-base leading-relaxed">
             Các thiết bị điện lạnh cũ nguyên zin được kỹ thuật viên của Điện Lạnh Tận Nhà kiểm thử, vệ sinh và bảo dưỡng kỹ trước khi bàn giao.
           </p>
@@ -246,8 +237,8 @@ export default function SanPham() {
                   onClick={() => setSelectedCat(cat)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     selectedCat === cat
-                      ? "bg-[#0a84ff] text-white"
-                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#0a84ff]/5 border border-slate-100"
+                      ? "bg-[#1066e6] text-white"
+                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#1066e6]/5 border border-slate-100"
                   }`}
                 >
                   {cat}
@@ -266,8 +257,8 @@ export default function SanPham() {
                   onClick={() => setSelectedBrand(brand)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     selectedBrand === brand
-                      ? "bg-[#0a84ff] text-white"
-                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#0a84ff]/5 border border-slate-100"
+                      ? "bg-[#1066e6] text-white"
+                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#1066e6]/5 border border-slate-100"
                   }`}
                 >
                   {brand}
@@ -286,8 +277,8 @@ export default function SanPham() {
                   onClick={() => setSelectedPrice(pr)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     selectedPrice === pr
-                      ? "bg-[#0a84ff] text-white"
-                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#0a84ff]/5 border border-slate-100"
+                      ? "bg-[#1066e6] text-white"
+                      : "bg-[#f5f9ff] text-[#1e293b]/70 hover:bg-[#1066e6]/5 border border-slate-100"
                   }`}
                 >
                   {pr}
@@ -298,16 +289,22 @@ export default function SanPham() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProducts.map((p) => (
-              <ProductCard key={p.id} p={p} onClick={() => setActiveProduct(p)} />
-            ))}
-          </AnimatePresence>
-        </div>
+        {loading ? (
+          <div className="text-center py-20 text-slate-400">
+            Đang tải danh sách sản phẩm...
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((p) => (
+                <ProductCard key={p.id} p={p} onClick={() => setActiveProduct(p)} />
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
 
         {/* Empty State */}
-        {filteredProducts.length === 0 && (
+        {!loading && filteredProducts.length === 0 && (
           <div className="text-center py-20">
             <p className="text-[#1e293b]/55 font-bold">Không tìm thấy sản phẩm phù hợp bộ lọc!</p>
             <button
@@ -316,7 +313,7 @@ export default function SanPham() {
                 setSelectedBrand("Tất Cả");
                 setSelectedPrice("Tất Cả");
               }}
-              className="mt-4 text-[#0a84ff] font-bold text-sm hover:underline cursor-pointer"
+              className="mt-4 text-[#1066e6] font-bold text-sm hover:underline cursor-pointer"
             >
               Đặt lại bộ lọc
             </button>
@@ -350,24 +347,56 @@ export default function SanPham() {
               </button>
 
               {/* Modal Banner - Product Showcase in a light frosty studio showcase */}
-              <div className="h-56 bg-gradient-to-b from-[#f5f9ff] to-white flex items-center justify-center relative select-none border-b border-slate-100">
-                <div className="frost-overlay opacity-100 backdrop-blur-[2px] pointer-events-none" />
-                <div className="relative w-44 h-44 z-[1]">
-                  <Image
-                    src={activeProduct.image}
-                    alt={activeProduct.name}
-                    fill
-                    sizes="176px"
-                    className="object-contain p-2"
-                  />
-                </div>
-              </div>
+              {(() => {
+                const imageUrls = activeProduct.image.split(/(?<!base64),/).map(s => s.trim()).filter(Boolean);
+                return (
+                  <div className="bg-gradient-to-b from-[#f5f9ff] to-white flex flex-col items-center justify-center relative select-none border-b border-slate-100 p-6 pb-4">
+                    <div className="frost-overlay opacity-100 backdrop-blur-[2px] pointer-events-none" />
+                    
+                    {/* Main Image */}
+                    <div className="relative w-40 h-40 z-[1] mb-4">
+                      <Image
+                        src={imageUrls[activeImageIndex] || "/products/ml-daikin.png"}
+                        alt={activeProduct.name}
+                        fill
+                        sizes="160px"
+                        className="object-contain p-2"
+                      />
+                    </div>
+
+                    {/* Image thumbnails list */}
+                    {imageUrls.length > 1 && (
+                      <div className="flex justify-center gap-2 z-[1] w-full overflow-x-auto py-1">
+                        {imageUrls.map((url, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImageIndex(idx)}
+                            className={`w-12 h-12 rounded-lg overflow-hidden border bg-white p-0.5 transition-all shadow-sm cursor-pointer shrink-0 ${
+                              activeImageIndex === idx
+                                ? "border-primary scale-105 ring-2 ring-primary/20"
+                                : "border-slate-200 opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <div className="relative w-full h-full">
+                              <img
+                                src={url}
+                                alt={`${activeProduct.name} thumbnail ${idx}`}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
 
               {/* Modal Body */}
               <div className="p-6 overflow-y-auto max-h-[60vh] space-y-6">
                 <div>
                   <div className="flex gap-2 mb-2">
-                    <span className="text-[10px] font-extrabold tracking-wider bg-[#f5f9ff] text-[#0a84ff] uppercase px-2 py-0.5 rounded-md">
+                    <span className="text-[10px] font-extrabold tracking-wider bg-[#f5f9ff] text-[#1066e6] uppercase px-2 py-0.5 rounded-md">
                       {activeProduct.category}
                     </span>
                     <span className="text-[10px] font-extrabold tracking-wider bg-emerald-50 text-emerald-500 uppercase px-2 py-0.5 rounded-md">
@@ -395,7 +424,7 @@ export default function SanPham() {
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-slate-100">
                   <div className="text-center sm:text-left">
                     <span className="text-[10px] font-bold text-[#1e293b]/50 uppercase tracking-wider block">Giá bán thanh lý</span>
-                    <span className="text-xl font-extrabold text-[#0a84ff]">{activeProduct.price}</span>
+                    <span className="text-xl font-extrabold text-[#1066e6]">{activeProduct.price}</span>
                   </div>
                   
                   <div className="flex gap-2 w-full sm:w-auto">
@@ -403,14 +432,14 @@ export default function SanPham() {
                       href={`https://zalo.me/0932188892?text=Tôi%20muốn%20hỏi%20sản%20phẩm%20${activeProduct.id}%20-%20${encodeURIComponent(activeProduct.name)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0068ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
+                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0068ff] hover:bg-[#094cb0] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
                     >
                       <MessageCircle className="w-4 h-4" />
                       Chat Zalo
                     </a>
                     <a
                       href="tel:0989577792"
-                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#0a84ff] hover:bg-[#0056b3] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
+                      className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 bg-[#1066e6] hover:bg-[#094cb0] text-white px-5 py-3 rounded-xl font-bold text-xs shadow-md transition-colors cursor-pointer"
                     >
                       <Phone className="w-4 h-4" />
                       Gọi điện
@@ -425,4 +454,3 @@ export default function SanPham() {
     </motion.div>
   );
 }
-

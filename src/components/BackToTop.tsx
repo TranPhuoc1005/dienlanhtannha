@@ -33,7 +33,7 @@ export default function BackToTop() {
       {visible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-40 bg-[#0a84ff] text-white p-3 rounded-full shadow-lg border border-[#0a84ff]/30 cursor-pointer flex items-center justify-center hover:bg-[#0056b3] transition-colors focus:outline-none"
+          className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-40 bg-[#1066e6] text-white p-3 rounded-full shadow-lg border border-[#1066e6]/30 cursor-pointer flex items-center justify-center hover:bg-[#094cb0] transition-colors focus:outline-none"
           initial={{ opacity: 0, scale: 0.5, rotate: -180 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           exit={{ opacity: 0, scale: 0.5, rotate: 180 }}

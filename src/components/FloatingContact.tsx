@@ -72,7 +72,7 @@ export default function FloatingContact() {
       <motion.a
         href="tel:0989577792"
         onClick={handleButtonClick}
-        className="relative w-14 h-14 bg-[#0a84ff] text-white rounded-full flex items-center justify-center shadow-xl cursor-pointer overflow-hidden border border-white/20 btn-pulse"
+        className="relative w-14 h-14 bg-[#1066e6] text-white rounded-full flex items-center justify-center shadow-xl cursor-pointer overflow-hidden border border-white/20 btn-pulse"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >

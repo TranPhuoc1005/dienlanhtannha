@@ -55,7 +55,7 @@ export default function WorkflowSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest"
+            className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest"
           >
             Quy trình làm việc
           </motion.h2>
@@ -75,7 +75,7 @@ export default function WorkflowSection() {
           {/* Vertical central line (Desktop) */}
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[3px] bg-slate-200 transform md:-translate-x-1/2 rounded-full overflow-hidden" aria-hidden="true">
             <motion.div
-              className="w-full bg-[#0a84ff] origin-top h-full"
+              className="w-full bg-[#1066e6] origin-top h-full"
               style={{ scaleY: scaleYSpring }}
             />
           </div>
@@ -100,7 +100,7 @@ export default function WorkflowSection() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ duration: 0.6, ease: "easeOut" }}
-                      className="bg-white/90 backdrop-blur-sm p-6 rounded-[20px] border border-slate-100 shadow-sm relative group hover:border-[#0a84ff]/30 transition-all duration-300"
+                      className="bg-white/90 backdrop-blur-sm p-6 rounded-[20px] border border-slate-100 shadow-sm relative group hover:border-[#1066e6]/30 transition-all duration-300"
                     >
                       {/* Triangle pointer for desktop */}
                       <div
@@ -113,11 +113,11 @@ export default function WorkflowSection() {
                       />
 
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="text-xs font-bold text-[#0a84ff] uppercase tracking-wider bg-[#f5f9ff] px-2.5 py-1 rounded-lg">
+                        <span className="text-xs font-bold text-[#1066e6] uppercase tracking-wider bg-[#f5f9ff] px-2.5 py-1 rounded-lg">
                           Bước {index + 1}
                         </span>
                       </div>
-                      <h4 className="text-lg font-bold text-[#1e293b] group-hover:text-[#0a84ff] transition-colors">
+                      <h4 className="text-lg font-bold text-[#1e293b] group-hover:text-[#1066e6] transition-colors">
                         {step.title}
                       </h4>
                       <p className="mt-2 text-xs sm:text-sm text-[#1e293b]/70 leading-relaxed">
@@ -133,7 +133,7 @@ export default function WorkflowSection() {
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true, margin: "-100px" }}
                       transition={{ delay: 0.15, duration: 0.4 }}
-                      className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#0a84ff] text-white flex items-center justify-center shadow-md border-4 border-[#f5f9ff]"
+                      className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#1066e6] text-white flex items-center justify-center shadow-md border-4 border-[#f5f9ff]"
                     >
                       <Icon className="w-4.5 h-4.5 md:w-5 md:h-5" aria-hidden="true" />
                     </motion.div>

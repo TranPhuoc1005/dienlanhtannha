@@ -73,7 +73,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="text-xs uppercase font-extrabold text-[#0a84ff] tracking-widest"
+            className="text-xs uppercase font-extrabold text-[#1066e6] tracking-widest"
           >
             Dịch Vụ Của Chúng Tôi
           </motion.h2>
@@ -91,7 +91,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, width: 60 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="h-1 bg-[#0a84ff] mx-auto mt-4 rounded-full"
+            className="h-1 bg-[#1066e6] mx-auto mt-4 rounded-full"
           />
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -121,22 +121,22 @@ export default function ServicesSection() {
                 whileHover={{
                   y: -12, // TranslateY(-12px)
                   scale: 1.03, // Scale 1 -> 1.03
-                  borderColor: "#0a84ff", // Blue glow border color
+                  borderColor: "#1066e6", // Blue glow border color
                   boxShadow: "0 20px 40px -15px rgba(10, 132, 255, 0.15)",
                 }}
                 className="bg-white/90 backdrop-blur-sm p-8 rounded-[20px] border border-slate-100 shadow-sm transition-all duration-300 group flex flex-col justify-between"
               >
                 <div>
                   {/* Icon wrapper with custom transition */}
-                  <div className="mb-6 inline-flex p-4 bg-[#f5f9ff] rounded-2xl text-[#0a84ff] border border-slate-50 transition-all duration-300">
+                  <div className="mb-6 inline-flex p-4 bg-[#f5f9ff] rounded-2xl text-[#1066e6] border border-slate-50 transition-all duration-300">
                     {/* SVG Icon: sizes 32px (28-40px range) with scale(1.1) rotate(8deg) hover animation */}
                     <Icon 
-                      className="w-8 h-8 transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:rotate-8 text-[#0a84ff]" 
+                      className="w-8 h-8 transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:rotate-8 text-[#1066e6]" 
                       aria-hidden="true" 
                     />
                   </div>
                   
-                  <h4 className="text-xl font-bold text-[#1e293b] mb-3 group-hover:text-[#0a84ff] transition-colors">
+                  <h4 className="text-xl font-bold text-[#1e293b] mb-3 group-hover:text-[#1066e6] transition-colors">
                     {service.title}
                   </h4>
                   
@@ -147,7 +147,7 @@ export default function ServicesSection() {
 
                 <Link
                   href={service.link}
-                  className="inline-flex items-center gap-1.5 text-[#0a84ff] hover:text-[#0056b3] font-bold text-sm group-hover:translate-x-1 transition-transform"
+                  className="inline-flex items-center gap-1.5 text-[#1066e6] hover:text-[#094cb0] font-bold text-sm group-hover:translate-x-1 transition-transform"
                 >
                   Xem chi tiết
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
